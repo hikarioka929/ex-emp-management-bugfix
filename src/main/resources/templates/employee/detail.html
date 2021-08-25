@@ -101,7 +101,7 @@
 							      入社日
 							    </th>
 							    <td>
-							      <span th:utext="${employee.hireDate}">2012/11/29</span>
+							      <span th:utext="${#dates.format(employee.hireDate, 'yyyy年MM月dd日')}">2012/11/29</span>
 							    </td>
 							  </tr>
 							  <tr>
@@ -141,7 +141,7 @@
 							      給料
 							    </th>
 							    <td>
-							      <span th:utext="${employee.salary + '円'}">400000円</span>
+							      <span th:utext="${#numbers.formatInteger(employee.salary, 5, 'COMMA')}">400000円</span>円
 							    </td>
 							  </tr>
 							  <tr>
