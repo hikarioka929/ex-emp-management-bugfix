@@ -143,4 +143,23 @@ public class AdministratorController {
 		return "redirect:/";
 	}
 	
+	/////////////////////////////////////////////////////
+	// ユースケース：エラーを発生させる
+	/////////////////////////////////////////////////////
+	/**
+	 * システム内で例外発生を行うメソッド.<br>
+	 * ここで発生した例外はGlobalExceptionHandlerが捕獲し処理をします
+	 * 
+	 * @throws ArithmeticException このメソッドは必ずArithmeticExceptionを発生します
+	 */
+	@RequestMapping("/exception")
+	public String throwsException() {
+		// 0で除算、非検査例外であるArithmeticExceptionが発生！
+		System.out.println("例外発生前");
+		System.out.println(10 / 0); // ←このタイミングでGlobalExceptionHandlerに処理が飛ぶ
+		System.out.println("例外発生後");
+
+		return "通常はここにHTML名を書くが、ここまで処理は来ない";
+	}
+	
 }
