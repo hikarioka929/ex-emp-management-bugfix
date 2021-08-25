@@ -59,7 +59,7 @@ public class EmployeeService {
 	 * @param name 検索したい従業員の名前
 	 * @return 従業員情報
 	 */
-	public List<Employee> findByLikeName(String name){
+	public List<Employee> searchByLikeName(String name){
 		List<Employee> employeeList = employeeRepository.findByLikeName(name);
 		if( employeeList == null ) {
 			employeeList = employeeRepository.findAll();

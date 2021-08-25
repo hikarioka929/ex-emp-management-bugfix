@@ -68,10 +68,10 @@ public class EmployeeController {
 		if(name == null) {
 			employeeList = employeeService.showList();
 		} else {
-			if(employeeService.findByLikeName(name) == null) {
+			if(employeeService.searchByLikeName(name) == null) {
 				employeeList = null;
 			} else {
-				employeeList = employeeService.findByLikeName(name);
+				employeeList = employeeService.searchByLikeName(name);
 			}
 		}
 		model.addAttribute("employeeList", employeeList);
