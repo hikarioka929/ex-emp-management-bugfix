@@ -90,7 +90,7 @@ public class EmployeeRepository {
 	 * @param name 検索したい従業員の名前
 	 * @return 検索された従業員情報
 	 */
-	public List<Employee> findByName(String name){
+	public List<Employee> findByLikeName(String name){
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count FROM employees WHERE name LIKE :name ORDER BY hire_date DESC;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
 		List<Employee> employeeList = template.query(sql, param, EMPLOYEE_ROW_MAPPER);

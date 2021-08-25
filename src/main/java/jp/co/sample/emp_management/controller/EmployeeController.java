@@ -64,7 +64,16 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/showSearchList")
 	public String showSearchList(String name, Model model) {
-		List<Employee> employeeList = employeeService.findByName(name);
+		List<Employee> employeeList;
+		if(name == null) {
+			employeeList = employeeService.showList();
+		} else {
+			if(employeeService.findByLikeName(name) == null) {
+				employeeList = null;
+			} else {
+				employeeList = employeeService.findByLikeName(name);
+			}
+		}
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}
