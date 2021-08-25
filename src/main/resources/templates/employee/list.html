@@ -54,7 +54,17 @@
 		<ol class="breadcrumb">
 			<li class="active"><a href="list.html" th:href="@{/employee/showList}">従業員リスト</a></li>
 		</ol>
-
+		
+		<!-- 曖昧検索欄 -->
+		<form th:action="@{/employee/showSearchList}" method="post">
+			検索欄:
+			<input type="text" name="name" autocomplete="on" list="employeeList">
+			<datalist id="employeeList">
+				<option th:each="employee : ${employeeList}" th:value="${employee.name}"></option>
+			</datalist>
+			<button>従業員検索</button>
+		</form>
+		
 		<!-- table -->
 		<div class="row">
 			<div
