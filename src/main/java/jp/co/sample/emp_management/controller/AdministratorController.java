@@ -89,6 +89,10 @@ public class AdministratorController {
 			FieldError uniqueError = new FieldError(result.getObjectName(), "mailAddress", "このメールアドレスは既に登録されています");
 			result.addError(uniqueError);
 		}
+		if( !(administrator.getPassword().equals(form.getConfirmPassword())) ) {
+			FieldError noMatchError = new FieldError(result.getObjectName(), "confirmPassword", "パスワードと一致していません");
+			result.addError(noMatchError);
+		}
 		if(result.hasErrors()) {
 			return toInsert();
 		}
