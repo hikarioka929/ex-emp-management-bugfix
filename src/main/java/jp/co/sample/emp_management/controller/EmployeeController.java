@@ -63,17 +63,13 @@ public class EmployeeController {
 	 * @return 検索された従業員一覧画面
 	 */
 	@RequestMapping("/showSearchList")
-	public String showSearchList(String name, Model model) {
-		List<Employee> employeeList;
-		if(name == null) {
-			employeeList = employeeService.showList();
-		} else {
-			if(employeeService.searchByLikeName(name) == null) {
-				employeeList = null;
-			} else {
-				employeeList = employeeService.searchByLikeName(name);
-			}
-		}
+	public String showSearchList(String searchName, Model model) {
+		List<Employee> employeeList = employeeService.searchByLikeName(searchName);
+
+		  if(employeeList.isEmpty()) {
+		    model.addAttribute("searchError", "１件もありませんでした");
+		    employeeList = employeeService.showList();
+		  }
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}
