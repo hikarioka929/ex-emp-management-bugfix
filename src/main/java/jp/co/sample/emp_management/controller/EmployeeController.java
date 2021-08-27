@@ -52,6 +52,27 @@ public class EmployeeController {
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
 	}
+	
+	/////////////////////////////////////////////////////
+	// ユースケース：従業員を検索する
+	/////////////////////////////////////////////////////
+	/**
+	 * 従業員を検索して従業員一覧画面を出力します.
+	 * 
+	 * @param model モデル
+	 * @return 検索された従業員一覧画面
+	 */
+	@RequestMapping("/showSearchList")
+	public String showSearchList(String searchName, Model model) {
+		List<Employee> employeeList = employeeService.searchByLikeName(searchName);
+
+		  if(employeeList.isEmpty()) {
+		    model.addAttribute("searchError", "１件もありませんでした");
+		    employeeList = employeeService.showList();
+		  }
+		model.addAttribute("employeeList", employeeList);
+		return "employee/list";
+	}
 
 	
 	/////////////////////////////////////////////////////
